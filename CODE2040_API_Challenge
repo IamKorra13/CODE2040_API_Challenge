@@ -19,6 +19,8 @@ getString.text
 #   u'{"result":"hEiWP"}\n'
 token = "hEiWP"
 
+
+"""Return the reverse of the given string."""
 def reverseString(strg):
 	newString = ""
 	length = len(strg)
@@ -28,8 +30,7 @@ def reverseString(strg):
 	return newString
 
 answer = reverseString(token)
-#mVuVq
-
+print(answer)
 answerStgI = {'token' : 'kB9m2JfOPy', 'string' : answer}
 getAnswer = requests.post("http://challenge.code2040.org/api/validatestring", json=answerStgI)
 getAnswer.text
@@ -45,6 +46,9 @@ StageII.text
 #u'{"result":{"haystack":["PcQ01","AetkU","hXzgB","WD9xl","62Bg7","TJwOk","5GOKv","iUg2D","QuJDG","eqYaH","oEa2B","RWRu1","HVls2","aQFeB","BMA2i","63tsL","mTK2q","TdRQD","aQxvL","gBJIE"],"needle":"oEa2B"}}\n'
 
 task = {"haystack":["PcQ01","AetkU","hXzgB","WD9xl","62Bg7","TJwOk","5GOKv","iUg2D","QuJDG","eqYaH","oEa2B","RWRu1","HVls2","aQFeB","BMA2i","63tsL","mTK2q","TdRQD","aQxvL","gBJIE"],"needle":"oEa2B"}
+
+
+"""Search for the needle in the 'haystack'. """
 def searchDict(dict):
 	objective = dict['needle']
 	for i in xrange(len(dict['haystack'])):
@@ -54,11 +58,11 @@ def searchDict(dict):
 
 index = searchDict(task)
 print(index)
-
 results = {'token' : 'kB9m2JfOPy', 'needle' : index}
 resultStageII = requests.post("http://challenge.code2040.org/api/validateneedle", json=results)
 resultStageII.text
 #u'{"result":"PASS: stage2. Enrollment record updated!"}\n'
+
 
 ########################################
 #				Stage III
@@ -69,6 +73,8 @@ StageIII.text
 
 prefixDict = {"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}
 
+
+"""Return a new array with entries without the given prefix."""
 def removePrefixes(dict):
 	newArray = []
 	prefix = dict['prefix']
