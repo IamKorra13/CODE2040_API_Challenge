@@ -111,8 +111,8 @@ datTimeDict = {"datestamp":"2006-03-16T04:26:00.000Z","interval":362622622}
 def addSeconds(dict):
 	date = dateutil.parser.parse(dict['datestamp'])
 	newDate = date + timedelta(seconds=dict['interval'])
-	form = "%Y-%m-%dT%H:%M:%S.%f%z"
-	return newDate.strftime(form)[:-8]+'Z'
+	formmatting = "%Y-%m-%dT%H:%M:%S.%f%z"
+	return newDate.strftime(formmatting)[:-8]+'Z'
 
 answer = addSeconds(datTimeDict)
 print(answer)
