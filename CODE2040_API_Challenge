@@ -1,15 +1,14 @@
 #Ashley Collins
 #API Challege
 #
-#u'{"result":"kB9m2JfOPy"}\n'
-#token is kB9m2JfOPy
+#
 #
 import requests
 payload = {'email' : 'a.collins05@berkeley.edu', 'github': 'https://github.com/IamKorra13/CODE2040_API_Challenge.git'}
 r = requests.post("http://challenge.code2040.org/api/register", json=payload)
 r.text
 #"u'{"result":"kB9m2JfOPy"}\n'"
-
+#token is kB9m2JfOPy
 
 #######################################
 #               Stage I
@@ -19,6 +18,7 @@ getString = requests.post("http://challenge.code2040.org/api/getstring", json=st
 getString.text
 #   u'{"result":"hEiWP"}\n'
 token = "hEiWP"
+
 def reverseString(strg):
 	newString = ""
 	length = len(strg)
@@ -32,8 +32,7 @@ answer = reverseString(token)
 
 answerStgI = {'token' : 'kB9m2JfOPy', 'string' : answer}
 getAnswer = requests.post("http://challenge.code2040.org/api/validatestring", json=answerStgI)
-
-#getAnswer.text
+getAnswer.text
 #u'{"result":"PASS: stage1. Enrollment record updated!"}\n'
 
 
@@ -66,7 +65,7 @@ resultStageII.text
 ########################################
 StageIII = requests.post("http://challenge.code2040.org/api/prefix", json=myToken)
 StageIII.text
-u'{"result":{"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}}\n'
+#u'{"result":{"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}}\n'
 
 prefixDict = {"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}
 
@@ -80,10 +79,12 @@ def removePrefixes(dict):
 	return newArray
 
 answer = removePrefixes(prefixDict)
+print(answer)
+
 resultsIII = {'token' : 'kB9m2JfOPy', 'array' : answer}
 resultStageIII =  requests.post("http://challenge.code2040.org/api/validateprefix", json=resultsIII)
 resultStageIII.text
-u'{"result":"PASS: stage3. Enrollment record updated!"}\n'
+#u'{"result":"PASS: stage3. Enrollment record updated!"}\n'
 
 
 #######################################
@@ -105,8 +106,10 @@ def addSeconds(dict):
 
 answer = addSeconds(datTimeDict)
 print(answer)
+
 resultsIV = {'token' : 'kB9m2JfOPy', 'datestamp' : answer}
 resultStageIV = requests.post("http://challenge.code2040.org/api/validatetime", json=resultsIV)
 StageIV.text
+#u'{"result":"PASS: stage4. Enrollment record updated!"}\n'
 
 
