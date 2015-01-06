@@ -43,7 +43,7 @@ getAnswer = requests.post("http://challenge.code2040.org/api/validatestring", js
 myToken = {'token' : 'kB9m2JfOPy'}
 StageII = requests.post("http://challenge.code2040.org/api/haystack", json=myToken)
 StageII.text
-#u'{"result":{"haystack":["PcQ01","AetkU","hXzgB","WD9xl","62Bg7","TJwOk","5GOKv","iUg2D","QuJDG","eqYaH","oEa2B","RWRu1","HVls2","aQFeB","BMA2i","63tsL","mTK2q","TdRQD","aQxvL","gBJIE"],"needle":"oEa2B"}}\n'
+u'{"result":{"haystack":["PcQ01","AetkU","hXzgB","WD9xl","62Bg7","TJwOk","5GOKv","iUg2D","QuJDG","eqYaH","oEa2B","RWRu1","HVls2","aQFeB","BMA2i","63tsL","mTK2q","TdRQD","aQxvL","gBJIE"],"needle":"oEa2B"}}\n'
 
 task = {"haystack":["PcQ01","AetkU","hXzgB","WD9xl","62Bg7","TJwOk","5GOKv","iUg2D","QuJDG","eqYaH","oEa2B","RWRu1","HVls2","aQFeB","BMA2i","63tsL","mTK2q","TdRQD","aQxvL","gBJIE"],"needle":"oEa2B"}
 def searchDict(dict):
@@ -63,5 +63,36 @@ resultStageII.text
 ########################################
 #				Stage III
 ########################################
+StageIII = requests.post("http://challenge.code2040.org/api/prefix", json=myToken)
+StageIII.text
+u'{"result":{"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}}\n'
+
+prefixDict = {"array":["313kV38o","749SZEZb","150Gem7Y","749Fm7Kl","15064Zyr","749oI2yo"],"prefix":"749"}
+
+def removePrefixes(dict):
+	newArray = []
+	prefix = dict['prefix']
+	lenPrefix =  len(prefix)
+	for string in dict['array']:
+		if (string[0:lenPrefix] != prefix):#!(string.contains(prefix)):
+			newArray.append(string)
+	return newArray
+
+answer = removePrefixes(prefixDict)
+resultsIII = {'token' : 'kB9m2JfOPy', 'array' : answer}
+resultStageIII =  requests.post("http://challenge.code2040.org/api/validateprefix", json=resultsIII)
+resultStageIII.text
+u'{"result":"PASS: stage3. Enrollment record updated!"}\n'
+
+
+#######################################
+#				Stage IV
+#######################################
+
+StageIV = requests.post("http://challenge.code2040.org/api/time", json=myToken)
+StageIV.text
+u'{"result":{"datestamp":"2006-03-16T04:26:00.000Z","interval":362622622}}\n'
+
+
 
 
