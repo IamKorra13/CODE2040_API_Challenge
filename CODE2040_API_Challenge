@@ -37,6 +37,7 @@ getAnswer.text
 #u'{"result":"PASS: stage1. Enrollment record updated!"}\n'
 
 
+
 #######################################
 #				Stage II
 #######################################
@@ -64,6 +65,7 @@ resultStageII.text
 #u'{"result":"PASS: stage2. Enrollment record updated!"}\n'
 
 
+
 ########################################
 #				Stage III
 ########################################
@@ -86,11 +88,11 @@ def removePrefixes(dict):
 
 answer = removePrefixes(prefixDict)
 print(answer)
-
 resultsIII = {'token' : 'kB9m2JfOPy', 'array' : answer}
 resultStageIII =  requests.post("http://challenge.code2040.org/api/validateprefix", json=resultsIII)
 resultStageIII.text
 #u'{"result":"PASS: stage3. Enrollment record updated!"}\n'
+
 
 
 #######################################
@@ -104,6 +106,8 @@ StageIV.text
 #u'{"result":{"datestamp":"2006-03-16T04:26:00.000Z","interval":362622622}}\n'
 datTimeDict = {"datestamp":"2006-03-16T04:26:00.000Z","interval":362622622}
 
+
+"""Return the updated datestamp string with the added interval."""
 def addSeconds(dict):
 	date = dateutil.parser.parse(dict['datestamp'])
 	newDate = date + timedelta(seconds=dict['interval'])
@@ -112,7 +116,6 @@ def addSeconds(dict):
 
 answer = addSeconds(datTimeDict)
 print(answer)
-
 resultsIV = {'token' : 'kB9m2JfOPy', 'datestamp' : answer}
 resultStageIV = requests.post("http://challenge.code2040.org/api/validatetime", json=resultsIV)
 StageIV.text
